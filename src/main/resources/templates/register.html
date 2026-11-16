@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Create account | StudyFlow</title><link rel="stylesheet" th:href="@{/css/style.css}"></head>
+<body class="auth-page"><main class="auth-card">
+    <div class="brand">Study<span>Flow</span></div><h1>Create your account</h1><p class="muted">Start organizing your study workload today.</p>
+    <div class="alert error" th:if="${error}" th:text="${error}"></div>
+    <form method="post" th:action="@{/register}" th:object="${registerRequest}">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+        <label>Full name<input type="text" th:field="*{name}" required><small class="field-error" th:errors="*{name}"></small></label>
+        <label>Email<input type="email" th:field="*{email}" required><small class="field-error" th:errors="*{email}"></small></label>
+        <label>Password<input type="password" th:field="*{password}" required minlength="8"><small class="field-error" th:errors="*{password}"></small></label>
+        <button class="button primary full" type="submit">Create account</button>
+    </form>
+    <p class="center muted">Already registered? <a th:href="@{/login}">Sign in</a></p>
+</main></body></html>
